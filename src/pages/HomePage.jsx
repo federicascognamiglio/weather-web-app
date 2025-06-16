@@ -48,22 +48,36 @@ function HomePage() {
 
             {/* Current Weather Data */}
             {currWeather && Object.keys(currWeather).length > 0 &&
-                <section>
-                    <h2>Current weather</h2>
-                    <img src={`${import.meta.env.VITE_ICON_URL}${currWeather.weather[0].icon}@2x.png`} alt={`Icon ${currWeather.weather[0].description} weather`} />
-                    <p>{roundTemp(currWeather.main.temp)} °C</p>
-                    <p className='text-capitalize'>{currWeather.weather[0].description}</p>
-                    <p>Feels Like: {roundTemp(currWeather.main.feels_like)} °C</p>
-                    <p>Humidity: {currWeather.main.humidity}%</p>
+                <section className='my-5'>
+                    <h2 className='text-center mb-4'>Current weather</h2>
+                    <div className="d-flex gap-5 justify-content-center align-items-end">
+                        <div className="d-flex align-items-center">
+                            <img src={`${import.meta.env.VITE_ICON_URL}${currWeather.weather[0].icon}@2x.png`} alt={`Icon ${currWeather.weather[0].description} weather`} />
+                            <h3 style={{ fontSize: "50px" }}>{roundTemp(currWeather.main.temp)} °C</h3>
+                        </div>
+                        <div className='text-muted mx-5'>
+                            <p className='mb-0'>Feels Like: {roundTemp(currWeather.main.feels_like)} °C</p>
+                            <p className='mb-0'>Humidity: {currWeather.main.humidity}%</p>
+                            <p>Wind: {roundTemp(currWeather.wind.speed)} Km/h</p>
+                        </div>
+                        <div className='text-end ms-5'>
+                            <p className='mb-0'>{weatherData.city.name}, {weatherData.city.country}</p>
+                            <p className='text-muted mb-1'>{formatDate(currWeather.dt_txt)}</p>
+                            <p className='text-capitalize'>{currWeather.weather[0].description}</p>
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-center mt-3">
+                        <button className='btn btn-primary' onClick={() => getWeatherData()}>Update Weather</button>
+                    </div>
                 </section>
             }
 
             {/* Following 4-day Forecast */}
             {
                 dailyForecast && dailyForecast.length > 0 &&
-                <section>
-                    <h3>Next 4 days weather:</h3>
-                    <div className="row">
+                <section className='text-center pt-5 mb-5'>
+                    <h2>Next 4 days weather:</h2>
+                    <div className="row mt-5">
                         {dailyForecast.slice(1).map((curDay, index) =>
                             <div className="col" key={index}>
                                 <div className="card">
