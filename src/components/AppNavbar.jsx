@@ -13,8 +13,8 @@ function AppNavbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <NavLink to={"/"} className="nav-link" aria-current="page">Dashboard</NavLink>
-                        <NavLink to={"/settings"} className="nav-link">Settings</NavLink>
+                        <NavLink to={"/"} className="nav-link text-end" aria-current="page">Dashboard</NavLink>
+                        <NavLink to={"/settings"} className="nav-link text-end">Settings</NavLink>
                     </div>
                 </div>
             </div>
